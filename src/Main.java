@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws RuntimeException{
@@ -13,18 +13,27 @@ public class Main {
         Product cucumbers = new Product("огурцы", 150,2);
         Product tomatoes = new Product("помидоры", 170, 3);
 
+        ProductLists firstProdList = new ProductLists();
+        ProductLists secondProdList = new ProductLists();
 
-        Product.addProdList(bananas);
+        firstProdList.addProdList(bananas);
        // Product.addProdList(bananas1);
-        Product.addProdList(kiwi);
-        Product.addProdList(potato);
-        Product.addProdList(onion);
-        Product.addProdList(cucumbers);
-        Product.addProdList(tomatoes);
-        Product.removeProdList(bananas);
-        Product.makePurchased(onion);
-        System.out.println(Arrays.toString(Product.getProductList().toArray()));
+        firstProdList.addProdList(kiwi);
+        firstProdList.addProdList(potato);
+        firstProdList.addProdList(onion);
+        secondProdList.addProdList(cucumbers);
+        secondProdList.addProdList(tomatoes);
+        secondProdList.removeProdList(bananas);
+        firstProdList.makePurchased(onion);
+        System.out.println(Arrays.toString(firstProdList.getProductList().toArray()));
 
+        Recipes salad = new Recipes(firstProdList,"Салат смешанный");
+        Recipes salad2 = new Recipes(secondProdList,"Салат летний");
+        RecipesList recipesList = new RecipesList();
+
+        recipesList.addRecipesList(salad);
+        recipesList.addRecipesList(salad2);
+        System.out.println(Arrays.toString(recipesList.getRecipesList().toArray()));
 
     }
 }

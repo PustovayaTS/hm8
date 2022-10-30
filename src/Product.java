@@ -9,7 +9,6 @@ public class Product {
     private int quantity;
 
     private boolean purchased;
-    private static Set<Product> productList = new HashSet<>();
 
     public Product(String name, int cost, int quantity) {
         this.name = name;
@@ -34,33 +33,15 @@ public class Product {
         return quantity;
     }
 
+    public boolean getPurchase() { return purchased; };
+
+    public void setPurchase(boolean purchase) {
+        purchased = purchase;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public static Set<Product> getProductList() {
-        return productList;
-    }
-
-    public static void addProdList (Product product) throws RuntimeException {
-        if (productList.contains(product)){
-            throw new RuntimeException();
-        } else if (product.getName() == null || product.getName().isEmpty() || product.getCost() == 0 || product.getQuantity() == 0) {
-            throw new RuntimeException("Карточка заполнена не полностью");
-        }
-        productList.add(product);
-    }
-
-    public static void removeProdList (Product product) {
-        productList.remove(product);
-    }
-
-    public static void makePurchased (Product product){
-        productList.remove(product);
-        product.purchased = true;
-        productList.add(product);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +65,10 @@ public class Product {
         }
         return name + " " + cost + " рублей, вес " + quantity + " кг. - " + purchase + "\n";
     }
+
+
+
+
 }
 
 
