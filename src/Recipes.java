@@ -45,6 +45,6 @@ public class Recipes {
     public String toString() {
         return "Рецепт - " + recipeName + '\n' +
                 " стоимость: " + totalCost + '\n' +
-                " состав: " + products.getProductList();
+                " состав: " + products.getProductList().toString();
     }
 }

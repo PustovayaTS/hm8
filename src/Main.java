@@ -16,16 +16,15 @@ public class Main {
         ProductLists firstProdList = new ProductLists();
         ProductLists secondProdList = new ProductLists();
 
-        firstProdList.addProdList(bananas);
+        firstProdList.addProdList(bananas,1);
        // Product.addProdList(bananas1);
-        firstProdList.addProdList(kiwi);
-        firstProdList.addProdList(potato);
-        firstProdList.addProdList(onion);
-        secondProdList.addProdList(cucumbers);
-        secondProdList.addProdList(tomatoes);
+        firstProdList.addProdList(kiwi,2);
+        firstProdList.addProdList(potato,5);
+        firstProdList.addProdList(onion,10);
+        secondProdList.addProdList(cucumbers,4);
+        secondProdList.addProdList(tomatoes,6);
         secondProdList.removeProdList(bananas);
         firstProdList.makePurchased(onion);
-        System.out.println(Arrays.toString(firstProdList.getProductList().toArray()));
 
         Recipes salad = new Recipes(firstProdList,"Салат смешанный");
         Recipes salad2 = new Recipes(secondProdList,"Салат летний");

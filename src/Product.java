@@ -63,7 +63,7 @@ public class Product {
         } else {
             purchase = "не куплено";
         }
-        return name + " " + cost + " рублей, вес " + quantity + " кг. - " + purchase + "\n";
+        return name + " " + cost + " рублей, вес " + quantity + " кг. - " + purchase;
     }
 
 

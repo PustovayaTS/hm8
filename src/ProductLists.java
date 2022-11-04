@@ -1,21 +1,23 @@
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class ProductLists {
-    private Set<Product> productList = new HashSet<>();
+    private HashMap<Product,Integer> productList = new HashMap<>();
 
-    public Set<Product> getProductList() {
+    public HashMap<Product,Integer> getProductList() {
         return productList;
     }
 
-    public void addProdList (Product product) throws RuntimeException {
-        if (productList.contains(product)){
+    public void addProdList (Product product, int quantity) throws RuntimeException {
+        if (productList.containsKey(product)){
             throw new RuntimeException();
         } else if (product.getName() == null || product.getName().isEmpty() || product.getCost() == 0 || product.getQuantity() == 0) {
             throw new RuntimeException("Карточка заполнена не полностью");
         }
-        productList.add(product);
+        int localQuantity = 1;
+        if (quantity != 0 || quantity > 0){
+            localQuantity = quantity;
+        }
+        productList.put(product,localQuantity);
     }
 
     public void removeProdList (Product product) {
@@ -23,16 +25,24 @@ public class ProductLists {
     }
 
     public void makePurchased (Product product){
+        int localQuantity = 0;
+        localQuantity = productList.get(product);
         productList.remove(product);
         product.setPurchase(true);
-        productList.add(product);
+        productList.put(product,localQuantity);
     }
 
     public int getTotalCost(){
         int totalCost = 0;
-        for (Product prod: productList) {
-            totalCost = prod.getCost()+totalCost;
+        for (Map.Entry<Product, Integer> entry: productList.entrySet()) {
+            totalCost = entry.getKey().getCost() * entry.getValue()+totalCost;
         }
+
         return totalCost;
+    }
+
+    @Override
+    public String toString() {
+        return "Список продуктов = " + productList;
     }
 }
